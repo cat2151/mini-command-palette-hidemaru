@@ -25,7 +25,7 @@ function main() {
     install_miniCommandPalette
     install_miniIncrementalSearchFilter
     install_migemo
-#    del installMiniCommandPalette.bat
+    del installMiniCommandPalette.bat # ©•ª©g‚ğíœ‚·‚é
 }
 
 
