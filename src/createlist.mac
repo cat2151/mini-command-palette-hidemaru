@@ -1,0 +1,59 @@
+// registerBuiltinFunction disablehistory vn;
+// registerBuiltinFunction currentmacrodirectory s;
+// registerBuiltinFunction runex vsnnsnsnsnsnnnn;
+// registerBuiltinFunction replaceallfast vssn;
+// registerBuiltinFunction existfile ns;
+goto _end_createMacroList
+createMacroList:
+$$cmd="cmd /c dir /s /b "+$$1+"\\..\\*.mac";
+runex  $$cmd, 1, 0, "", 2, $$2, 0, "", 0, "", 2, 1, 0, 0;
+return;
+_end_createMacroList:
+goto _end_processMacroList
+processMacroList:
+openfile  "/h "+$$2;
+replaceallfast  "^", "execmacro \"", 0x00000010;
+replaceallfast  "$", "\"", 0x00000010;
+replaceallfast  "\\", "\\\\", 0x01000000;
+save ;
+setactivehidemaru  findhidemaru( $$1);
+closehidemaru  findhidemaru( $$2);
+return;
+_end_processMacroList:
+goto _end_createCustomList
+createCustomList:
+if ( existfile( $$2)) {
+return;
+}
+$$cmd="cmd /c copy "+$$1+" "+$$2;
+runex  $$cmd, 1, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0;
+return;
+_end_createCustomList:
+goto _end_mixList
+mixList:
+$$cmd="cmd /c copy "+$$2+"+"+$$3+" "+$$4;
+runex  $$cmd, 1, 0, "", 0, "", 0, "", 0, "", 2, 1, 0, 0;
+if ( !existfile( $$4)) {
+message  "ERROR : リスト生成に失敗しました";
+endmacro ;
+}
+return;
+_end_mixList:
+goto _end_main
+main:
+disablehistory  0x1FF;
+$$firstFilename=filename;
+$$firstMacroDir=currentmacrodirectory;
+$$macs=$$firstMacroDir+"\\work\\macroFiles.mac";
+$$customSample=$$firstMacroDir+"\\custom_sample.mac";
+$$customName=$$firstMacroDir+"\\custom.mac";
+$$total=$$firstMacroDir+"\\work\\list.mac";
+call createMacroList  $$firstMacroDir, $$macs;
+call processMacroList  $$firstFilename, $$macs;
+call createCustomList  $$customSample, $$customName;
+call mixList  $$firstMacroDir, $$customName, $$macs, $$total;
+return;
+_end_main:
+call main ;
+// compileAndExecute::Done
+// t1 : 88051265  t2 : 88052000  diff = 735

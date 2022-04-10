@@ -1,0 +1,33 @@
+// registerBuiltinFunction disablehistory vn;
+// registerBuiltinFunction currentmacrodirectory s;
+// registerBuiltinFunction existfile ns;
+// registerBuiltinFunction execmacro vs;
+// registerBuiltinFunction deletefile vs;
+// registerBuiltinFunction runex vsnnsnsnsnsnnnn;
+goto _end_selectMacro
+selectMacro:
+$$exeName=$$1+"\\miniIncrementalSearchFilter\\miniIncrementalSearchFilter.exe";
+$$cmd=$$exeName+" "+$$2+" "+$$3+" --encode cp932 --andsearch --migemo "+$$4;
+runex  $$cmd, 1, 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0;
+return;
+_end_selectMacro:
+goto _end_main
+main:
+disablehistory  0x1FF;
+$$macroDir=currentmacrodirectory;
+$$total=$$macroDir+"\\work\\list.mac";
+$$macName=$$macroDir+"\\work\\result.mac";
+$$migemoDict=$$macroDir+"\\dict\\migemo-dict";
+if ( !existfile( $$total)) {
+execmacro  $$macroDir+"\\createList.mac";
+}
+deletefile  $$macName;
+call selectMacro  $$macroDir, $$total, $$macName, $$migemoDict;
+if ( existfile( $$macName)) {
+execmacro  $$macName;
+}
+return;
+_end_main:
+call main ;
+// compileAndExecute::Done
+// t1 : 85994031  t2 : 85994359  diff = 328

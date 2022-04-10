@@ -1,0 +1,8 @@
+/*コマンドパレットをリロード*/ execmacro macrodir + "\\miniCommandPalette\\createList.mac"; execmacro macrodir + "\\miniCommandPalette\\miniCommandPalette.mac"; 
+/*コマンドパレットをカスタマイズ*/ openfile macrodir + "\\miniCommandPalette\\custom.mac";
+
+使用法：
+  文字をタイプして絞り込み、上下で選んでENTERで決定、ESCでキャンセル
+  （migemoなので、例えばsiyouとタイプするだけで「使用」を入力したのと同じ効果があります）
+
+↓ここから下には秀丸マクロの一覧が生成されます
