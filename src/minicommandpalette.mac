@@ -17,7 +17,7 @@ disablehistory  0x1FF;
 $$macroDir=currentmacrodirectory;
 $$total=$$macroDir+"\\work\\list.mac";
 $$macName=$$macroDir+"\\work\\result.mac";
-$$migemoDict=$$macroDir+"\\dict\\migemo-dict";
+$$migemoDict=$$macroDir+"\\miniIncrementalSearchFilter\\dict\\migemo-dict";
 if ( !existfile( $$total)) {
 execmacro  $$macroDir+"\\createList.mac";
 }
@@ -30,4 +30,4 @@ return;
 _end_main:
 call main ;
 // compileAndExecute::Done
-// t1 : 85994031  t2 : 85994359  diff = 328
+// t1 : 195866593  t2 : 195866921  diff = 328

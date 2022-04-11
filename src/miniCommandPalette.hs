@@ -30,7 +30,7 @@ function main() {
   var macroDir   = currentmacrodirectory();
   var total      = macroDir + "\\work\\list.mac";
   var macName    = macroDir + "\\work\\result.mac";
-  var migemoDict = macroDir + "\\dict\\migemo-dict";
+  var migemoDict = macroDir + "\\miniIncrementalSearchFilter\\dict\\migemo-dict";
 
   if (!existfile(total)) {
     execmacro(macroDir + "\\createList.mac");
