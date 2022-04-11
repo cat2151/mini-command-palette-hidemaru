@@ -17,7 +17,7 @@ function install_miniIncrementalSearchFilter() {
 function install_migemo() {
     pushd miniCommandPalette\miniIncrementalSearchFilter
     curl.exe -L https://raw.githubusercontent.com/cat2151/migemo-auto-install-for-windows/main/install_cmigemo.bat --output install_cmigemo.bat
-    install_cmigemo.bat
+    cmd /c install_cmigemo.bat
     popd
 }
 
