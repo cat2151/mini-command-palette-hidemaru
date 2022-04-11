@@ -10,7 +10,7 @@ function copy_files() {
 }
 
 function compress() {
-    Compress-Archive -Path miniCommandPalette -DestinationPath miniCommandPaletteHidemaru.zip
+    Compress-Archive -Path miniCommandPalette -DestinationPath miniCommandPalette.zip
 }
 
 function main() {
