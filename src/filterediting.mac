@@ -1,0 +1,60 @@
+// registerBuiltinFunction disablehistory vn;
+// registerBuiltinFunction filename2 s;
+// registerBuiltinFunction currentmacrodirectory s;
+// registerBuiltinFunction deletefile vs;
+// registerBuiltinFunction existfile ns;
+// registerBuiltinFunction runex vsnnsnsnsnsnnnn;
+// registerBuiltinFunction copyline v;
+// registerBuiltinFunction beginclipboardread v;
+// registerBuiltinFunction getclipboard s;
+// registerBuiltinFunction encode n;
+// registerBuiltinFunction moveto vnn;
+// registerBuiltinFunction y n;
+goto _end_getEncode
+getEncode:
+if ( encode==1) {
+return "cp932";
+}
+if ( encode==6) {
+return "utf_8";
+}
+message  "ERROR : encode ["+str( encode)+"]";
+endmacro ;
+return "";
+_end_getEncode:
+goto _end_filterEditing
+filterEditing:
+$$exeName=$$1+"\\miniIncrementalSearchFilter\\miniIncrementalSearchFilter.exe";
+$$cmd=$$exeName+" "+$$2+" "+$$3+" --encode "+$$5+" --andsearch --migemo "+$$4;
+runex  $$cmd, 1, 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0;
+return;
+_end_filterEditing:
+goto _end_jump
+jump:
+openfile  "/h "+$$1;
+copyline ;
+setactivehidemaru  findhidemaru( $$2);
+closehidemaru  findhidemaru( $$1);
+moveto  0, 0;
+beginclipboardread ;
+searchdown  getclipboard;
+moveto  0, y;
+return;
+_end_jump:
+goto _end_main
+main:
+disablehistory  0x1FF;
+$$firstFilename=filename2;
+$$macroDir=currentmacrodirectory;
+$$resultName=$$macroDir+"\\work\\result_filterEditing.mac";
+$$migemoDict=$$macroDir+"\\miniIncrementalSearchFilter\\dict\\migemo-dict";
+deletefile  $$resultName;
+call getEncode ;$$_0=$$return;call filterEditing  $$macroDir, $$firstFilename, $$resultName, $$migemoDict, $$_0;
+if ( existfile( $$resultName)) {
+call jump  $$resultName, $$firstFilename;
+}
+return;
+_end_main:
+call main ;
+// compileAndExecute::Done
+// t1 : 241502890  t2 : 241503453  diff = 563

@@ -1,5 +1,6 @@
 /*コマンドパレットをリロード*/ execmacro macrodir + "\\miniCommandPalette\\createList.mac"; execmacro macrodir + "\\miniCommandPalette\\miniCommandPalette.mac"; 
 /*コマンドパレットをカスタマイズ*/ openfile macrodir + "\\miniCommandPalette\\custom.mac";
+/*編集中ファイルを絞り込み*/ execmacro macrodir + "\\miniCommandPalette\\filterEditing.mac"; 
 
 使用法：
   文字をタイプして絞り込み、上下で選んでENTERで決定、ESCでキャンセル

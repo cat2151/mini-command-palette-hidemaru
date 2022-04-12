@@ -7,6 +7,7 @@ function copy_files() {
     copy ..\src\minicommandpalette.mac miniCommandPalette\miniCommandPalette.mac # [備忘] トランスパイルのタイミングで小文字ファイル名になる（おそらく）
     copy ..\src\createlist.mac         miniCommandPalette\createList.mac
     copy ..\src\custom_sample.mac      miniCommandPalette
+    copy ..\src\filterediting.mac      miniCommandPalette\filterEditing.mac
 }
 
 function compress() {
