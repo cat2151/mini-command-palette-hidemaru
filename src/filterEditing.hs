@@ -22,7 +22,7 @@ function getEncode() : string {
 
 function filterEditing(macroDir: string, input: string, resultName: string, migemoDict: string, encode: string) {
   var exeName = macroDir + "\\miniIncrementalSearchFilter\\miniIncrementalSearchFilter.exe";
-  var cmd = exeName + " " + input + " " + resultName + " --encode " + encode + " --andsearch --migemo " + migemoDict;
+  var cmd = exeName + " " + input + " " + resultName + " --encode " + encode + " --andsearch --migemo " + migemoDict + " --alpha 0.96 --width 150 --height 40";
   runex(cmd
       , 1     //sync   0:async, 1:sync
       , 0, "" //stdin  0:none, 1:auto, 2:<file, 3:(reserved),
