@@ -7,7 +7,7 @@
 goto _end_selectMacro
 selectMacro:
 $$exeName=$$1+"\\miniIncrementalSearchFilter\\miniIncrementalSearchFilter.exe";
-$$cmd=$$exeName+" "+$$2+" "+$$3+" --encode cp932 --andsearch --migemo "+$$4;
+$$cmd=$$exeName+" "+$$2+" "+$$3+" --encode cp932 --andsearch --migemo "+$$4+" --alpha 0.96 --width 150 --height 40";
 runex  $$cmd, 1, 0, "", 0, "", 0, "", 0, "", 0, 0, 0, 0;
 return;
 _end_selectMacro:
@@ -30,4 +30,4 @@ return;
 _end_main:
 call main ;
 // compileAndExecute::Done
-// t1 : 195866593  t2 : 195866921  diff = 328
+// t1 : 190632000  t2 : 190632375  diff = 375
